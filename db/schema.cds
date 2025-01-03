@@ -10,20 +10,20 @@ using {
 
 
 entity Books : cuid, managed {
-    title       : localized String(255);
-    author      : Association to Authors;
-    genre       : Genre;
+    title       : localized String(255) @mandatory;
+    author      : Association to Authors @mandaroty @assert.target;
+    genre       : Genre @assert.range: true;
     publCountry : Country; // type Country : Association to sap.common.Countries;
-    stock       : NoOfBooks;
+    stock       : NoOfBooks default 0;
     price       : Price;
     isHardcover : Boolean;
 }
 
 entity Authors : cuid, managed {
-    name        : String(100);
+    name        : String(100) @mandatory;
     dateOfBirth : Date;
     dateOfDeath : Date;
-    epoch       : Association to Epochs;
+    epoch       : Association to Epochs @assert.target;
     books       : Association to many Books
                       on books.author = $self;
 }
