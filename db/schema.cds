@@ -1,23 +1,33 @@
 namespace com.sap.learning;
 
-entity Books {
-    key ID          : UUID;
-        title       : String(255);
-        author      : Association to Authors;
-        genre       : Genre;
-        publCountry : String(3);
-        stock       : NoOfBooks;
-        price       : Price;
-        isHardcover : Boolean;
+using {
+    cuid,
+    managed,
+    sap.common.CodeList
+} from '@sap/cds/common';
+
+
+entity Books : cuid, managed {
+    title       : localized String(255);
+    author      : Association to Authors;
+    genre       : Genre;
+    publCountry : String(3);
+    stock       : NoOfBooks;
+    price       : Price;
+    isHardcover : Boolean;
 }
 
-entity Authors {
-    key ID          : UUID;
-        name        : String(100);
-        dateOfBirth : Date;
-        dateOfDeath : Date;
-        books       : Association to many Books
-                          on books.author = $self;
+entity Authors : cuid, managed {
+    name        : String(100);
+    dateOfBirth : Date;
+    dateOfDeath : Date;
+    epoch       : Association to Epochs;
+    books       : Association to many Books
+                      on books.author = $self;
+}
+
+entity Epochs : CodeList {
+    key ID : Integer
 }
 
 
