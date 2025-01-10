@@ -36,6 +36,6 @@ POST {{baseUrl}}/cat/submitOrder
 Content-Type: application/json
 
 {
-  "book": "{{bookID}}",
+  "book": "0c4962b0-0e38-41fe-beec-a29d5baa785a",
   "quantity": 0
 }

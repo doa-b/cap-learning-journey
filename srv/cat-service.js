@@ -17,7 +17,7 @@ class CatalogService extends cds.ApplicationService {
         }
     }
 
-    reduceStock(req) {
+    async reduceStock(req) {
         const {Books} = this.entities;
         const {book, quantity} = req.data;
 
@@ -25,8 +25,19 @@ class CatalogService extends cds.ApplicationService {
             return req.error('The quantity must be greater than 1');
         }
 
-        let stock = 10;
-        return {stock}
+       const b = await SELECT.one.from(Books).where({ID: book}).columns(b => { b.stock});
+        if (!b) {
+            return req.error('The book does not exist');
+        }
+
+        let { stock } = b;
+        if(quantity > stock) {
+            return req.error(`quantity ${quantity} exceeds ${stock}`);
+        }
+
+        const result = await UPDATE(Books).where({ID: book}).with({ stock: { '-=': quantity}});
+        console.log(result);
+        return { stock: stock - quantity };
     }
 }
 
