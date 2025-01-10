@@ -14,17 +14,17 @@ GET {{baseUrl}}/cat/$metadata
 # Retrieve the ID of the book with the title 'Faust'
 # Use this ID to call the submitOrder action
 # @name getBookID
-GET {{baseUrl}}/cat/Books?$filter=title eq 'Faust'
+GET {{baseUrl}}/cat/Books/filter=title eq 'Roughing It'
 
 ###
 
-@bookID = {{getBookID.response.body.$.value[0].ID}}
+#@bookID = {{getBookID.response.body.$.value[0].ID}}
 
 POST {{baseUrl}}/cat/submitOrder
 Content-Type: application/json
 
 {
-  "book": "{{bookID}}",
+  "book": "0c4962b0-0e38-41fe-beec-a29d5baa785a",
   "quantity": 2
 }
 

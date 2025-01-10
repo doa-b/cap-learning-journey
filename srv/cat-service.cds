@@ -1,6 +1,10 @@
 using com.sap.learning as db from '../db/schema';
 
 service CatalogService @(path: '/cat') {
+
+     action submitOrder(book: db.Books:ID, quantity : Integer) returns {
+     stock: db.Books:stock};
+
      entity Authors as
             projection on db.Authors {
                 *,
