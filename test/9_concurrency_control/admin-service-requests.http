@@ -17,16 +17,16 @@ Content-Type: application/json
 }
 
 ###
-@authorID = {{createNewAuthor.response.body.$.ID}}
+@authorID = 0868f00d-9264-4065-bcdb-f1deca61e44e
 
 
 
 ### Read the newly created author for editing a first time
 # ... and assign the received ETag to the variable ETag1
-GET {{baseUrl}}/admin/Authors({{authorID}})
+GET {{baseUrl}}/admin/Authors(0868f00d-9264-4065-bcdb-f1deca61e44e)
 
 ###
-@ETag1 = {{createNewAuthor.response.headers.ETag}}
+@ETag1 = W/"2025-01-03T15:25:45.815Z"
 
 
 
@@ -35,7 +35,7 @@ GET {{baseUrl}}/admin/Authors({{authorID}})
 GET {{baseUrl}}/admin/Authors({{authorID}})
 
 ###
-@ETag2 = {{createNewAuthor.response.headers.ETag}}
+@ETag2 = 23
 
 
 
@@ -48,7 +48,7 @@ GET {{baseUrl}}/admin/Authors({{authorID}})
 # when the Author was first read.
 # The update implicitly creates a new ETag value.
 PUT {{baseUrl}}/admin/Authors({{authorID}})
-If-Match: {{ETag1}}
+If-Match: {{ETag2}}
 Content-Type: application/json
 
 {
