@@ -13,7 +13,7 @@ GET {{baseUrl}}/cat/Books?$filter=title eq 'Faust'
 
 ###
 
-@bookID = {{getBookID.response.body.$.value[0].ID}}
+@bookID = 0ec991dc-95c5-4d8f-91e6-f81a92744781
 
 
 
