@@ -39,7 +39,7 @@ Content-Type: application/json
 GET {{baseUrl}}/cat/Authors?$filter=name eq 'William Shakespeare'
 
 ###
-@authorID = {{getShakespeare.response.body.$.value[0].ID}}
+@authorID = ffdd2d3e-6604-427d-aca8-c08edafb0c71
 
 
 ###
@@ -61,7 +61,7 @@ Content-Type: application/json
 GET {{baseUrl}}/cat/Books?$filter=title eq 'Faust'
 
 ###
-@bookID = {{getBookID.response.body.$.value[0].ID}}
+@bookID = 0ec991dc-95c5-4d8f-91e6-f81a92744781
 
 
 ### ------------------------------------------------------------------------
@@ -104,7 +104,7 @@ Authorization: Basic catuser:abcd1234
 ### ------------------------------------------------------------------------
 # Get all books - as adminuser
 GET {{baseUrl}}/admin/Books
-Authorization: Basic adminuser:abcd1234
+Authorization: Basic alice
 
 
 ### ------------------------------------------------------------------------

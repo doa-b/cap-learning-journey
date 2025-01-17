@@ -19,13 +19,24 @@
         "[development]": {
           "kind": "sqlite",
           "credentials": {
-            "url": "db.sqlite"
+            "url": ":memory:"
+          }
+        }
+      },
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "adminuser": {
+            "password": "abcd1234",
+            "roles": [
+              "admin"
+            ]
+          },
+          "catuser": {
+            "password": "abcd1234"
           }
         }
       }
     }
-  },
-  "scripts": {
-    "start": "cds-serve"
   }
 }
